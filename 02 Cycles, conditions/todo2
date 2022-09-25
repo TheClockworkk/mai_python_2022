@@ -1,0 +1,30 @@
+#TODO2
+#подсчитайте количество моделей дронов каждого производителя из списка drone_list. производители: DJI, Autel, Parrot, Ryze, Eachine
+
+drone_list = ["DJI Mavic 2 Pro", "DJI Mavic 2 Zoom", "DJI Mavic 2 Enterprise Advanced", "AUTEL Evo II Pro", "DJI Mini 2", "Autel Evo Nano", "Autel Evo Lite Plus", "Parrot Anafi", "Dji Inspire 2", "DJI Mavic 3", "DJI Mavic Air2s", "Ryze Tello", "Eachine Trashcan"]
+
+developer_list = ["DJI", "Autel", "Parrot", "Ryze", "Eachine"]
+dji = 0
+autel = 0
+parrot = 0 
+ryze = 0 
+eachline = 0
+
+for drone in drone_list:
+  if drone.split(' ')[0].lower() == 'dji':
+    dji += 1
+  elif drone.split(' ')[0].lower() == 'autel':
+    autel+=1
+  elif drone.split(' ')[0].lower() == 'parrot':
+    parrot+=1
+  elif drone.split(' ')[0].lower() == 'ryze':
+    ryze+=1
+  elif drone.split(' ')[0].lower() == 'eachine':
+    eachline+=1
+
+arr = [dji, autel, parrot, ryze, eachline]
+
+c = 0
+for developer in arr:
+  print (developer_list[c], developer)
+  c += 1
