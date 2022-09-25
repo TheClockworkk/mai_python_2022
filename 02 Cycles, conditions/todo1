@@ -1,0 +1,36 @@
+#TODO1
+#выведите все дроны производителя, название которого введет пользователь через input, и подсчитайте их количество. 
+#учтите, что:
+#1) DJI и Dji - это один и тот же производитель! такие случаи тоже должны обрабатываться
+#2) при выводе исправьте название производителя, если допущена ошибка. правильный вариант названия: DJI, Autel
+
+drone_list = ["DJI Mavic 2 Pro", "DJI Mavic 2 Zoom", "DJI Mavic 2 Enterprise Advanced", "AUTEL Evo II Pro", "DJI Mini 2", "Autel Evo Nano", "Autel Evo Lite Plus", "Parrot Anafi", "Dji Inspire 2", "DJI Mavic 3", "DJI Mavic Air2s", "Ryze Tello", "Eachine Trashcan"]
+
+arr = []
+for drone in drone_list:
+  if drone.split(' ')[0].lower() == 'dji':
+    arr.append(drone.replace(drone.split(' ')[0], 'DJI'))
+  elif drone.split(' ')[0].lower() == 'autel':
+    arr.append(drone.replace(drone.split(' ')[0], 'Autel'))
+  else: 
+    arr.append(drone)
+  
+for drone in arr:
+  print(drone)
+  
+  
+print("\nВведите производителя дронов:")
+droneDeveloper = input()
+print("\nПоиск по производителю", droneDeveloper, "........")
+#droneDeveloper = str.upper (droneDeveloper)
+
+c = 0
+for drone in arr:
+    if str.upper (drone.split(' ')[0]) == str.upper(droneDeveloper):
+        c+=1
+        print(drone)
+        
+if c == 0:
+  print("\nНет данных по производителю")
+else:
+  print("\nНайдено дронов:", c)
