@@ -1,0 +1,22 @@
+#TODO3
+#выведите все дроны из списка, которые нужно регистрировать (масса больше 150 г), и подсчитайте их количество. 
+#сделайте то же самое для всех дронов, которые не нужно регистрировать
+#для этого вам нужно параллельно обрабатывать два списка: drone_list и drone_weight_list:
+#как работает zip, мы разберем на лекции про списки. пока что просто пользуйтесь
+
+drone_list = ["DJI Mavic 2 Pro", "DJI Mavic 2 Zoom", "DJI Mavic 2 Enterprise Advanced", "AUTEL Evo II Pro", "DJI Mini 2", "Autel Evo Nano", "Autel Evo Lite Plus", "Parrot Anafi", "Dji Inspire 2", "DJI Mavic 3", "DJI Mavic Air2s", "Ryze Tello", "Eachine Trashcan"]
+
+drone_weight_list = [903, 900, 920, 980, 249, 249, 600, 540, 1500, 1000, 570, 130, 110]
+count = 0
+for drone, weight in zip(drone_list,  drone_weight_list):
+  if weight > 150:
+    print(drone, "необходима регистрация")
+    count += 1
+print("Количество дронов на регистрацию: ", count, "\n")
+
+count = 0
+for drone, weight in zip(drone_list,  drone_weight_list):
+  if weight <= 150:
+    print(drone, "регистрация не нужна")
+    count += 1
+print("Количество дронов без необходимости регистрации: ", count)
