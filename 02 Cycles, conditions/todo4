@@ -1,0 +1,26 @@
+#TODO4
+#для каждого дрона из списка выведите, нужно ли согласовывать полет при следующих условиях:
+#высота 100 м, полет над населенным пунктом, вне закрытых зон, в прямой видимости
+#помните, что для дронов тяжелее 150 г согласовывать полет над населенным пунктом - обязательно!
+
+drone_list = ["DJI Mavic 2 Pro", "DJI Mavic 2 Zoom", "DJI Mavic 2 Enterprise Advanced", "AUTEL Evo II Pro", "DJI Mini 2", "Autel Evo Nano", "Autel Evo Lite Plus", "Parrot Anafi", "Dji Inspire 2", "DJI Mavic 3", "DJI Mavic Air2s", "Ryze Tello", "Eachine Trashcan"]
+
+drone_weight_list = [903, 900, 920, 980, 249, 249, 600, 540, 1500, 1000, 570, 130, 110]
+
+flag = 0
+count = 0
+for drone, weight in zip(drone_list,  drone_weight_list):
+  if weight > 150:
+    if flag == 0:
+      print("Согласовывать полет обязательно для: \n")
+      flag = 1
+    print(drone)
+ 
+flag = 0
+for drone, weight in zip(drone_list,  drone_weight_list):
+  if weight <= 150:
+    if flag == 0:
+      print("\n\nСогласовывать полет не обязательно для: \n")
+      flag = 1
+    print(drone)
+
