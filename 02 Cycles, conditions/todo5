@@ -1,0 +1,27 @@
+#TODO5*
+#модифицируйте решение задания TODO1:
+#теперь для введенного пользователем производителя вы должны вывести строку, содержащую перечисление моделей и БЕЗ названия производителя.
+#например, пользователь ввел "Autel". ваша программа должна вывести вот такой результат: "Evo II Pro, Evo Nano, Evo Lite Plus". для этого вам понадобится несколько функций работы со строками. решить эту задачу можно несколькими разными способами
+#производители те же: DJI, Autel, Parrot, Ryze, Eachine
+
+
+drone_list = ["DJI Mavic 2 Pro", "DJI Mavic 2 Zoom", "DJI Mavic 2 Enterprise Advanced", "AUTEL Evo II Pro", "DJI Mini 2", "Autel Evo Nano", "Autel Evo Lite Plus", "Parrot Anafi", "Dji Inspire 2", "DJI Mavic 3", "DJI Mavic Air2s", "Ryze Tello", "Eachine Trashcan"]
+
+arr = []
+for drone in drone_list:
+    arr.append(drone.replace(drone.split(' ')[0], ''))
+  
+print("\nВведите производителя дронов:")
+droneDeveloper = input()
+print("\nПоиск дронов производителя", droneDeveloper, "........")
+#droneDeveloper = str.upper (droneDeveloper)
+
+c = 0
+      
+for drone, droneWithoutDeveloper in zip(drone_list,  arr):
+  if str.upper (drone.split(' ')[0]) == str.upper(droneDeveloper):
+        c+=1
+        print(droneWithoutDeveloper)
+        
+if c == 0:
+  print("\nНет данных по производителю")
