@@ -6,21 +6,39 @@
 drone_list = ["DJI Mavic 2 Pro", "DJI Mavic 2 Zoom", "DJI Mavic 2 Enterprise Advanced", "AUTEL Evo II Pro", "DJI Mini 2", "Autel Evo Nano", "Autel Evo Lite Plus", "Parrot Anafi", "Dji Inspire 2", "DJI Mavic 3", "DJI Mavic Air2s", "Ryze Tello", "Eachine Trashcan"]
 
 drone_weight_list = [903, 900, 920, 980, 249, 249, 600, 540, 1500, 1000, 570, 130, 110]
+settlement = ''
+vision = ''
+closedArea = ''
+height = 0
+
+print("\nОтветьте yes или  no на следующие вопросы о месте полёта:\n")
+
+print("\nПолёт над населенным пунктом?\n")
+while settlement != 'yes' and settlement != 'no':
+  settlement = input()
+  if settlement != 'yes' and settlement != 'no':
+    print("Ввод не верен, повторите попытку")
+
+print("\nПолёт в прямой видимости?\n")
+while vision != 'yes' and vision != 'no':
+  vision = input()
+  if vision != 'yes' and vision != 'no':
+    print("Ввод не верен, повторите попытку")
+
+print("\nПолёт в закрытой зоне?\n")
+while closedArea != 'yes' and closedArea != 'no':
+  closedArea = input()
+  if closedArea != 'yes' and closedArea != 'no':
+    print("Ввод не верен, повторите попытку")
+    
+print("\nВведите высоту полета в метрах:")
+height = input()
+height = int(height)
+print("\n\n")
 
 flag = 0
-count = 0
 for drone, weight in zip(drone_list,  drone_weight_list):
-  if weight > 150:
-    if flag == 0:
-      print("Согласовывать полет обязательно для: \n")
-      flag = 1
-    print(drone)
- 
-flag = 0
-for drone, weight in zip(drone_list,  drone_weight_list):
-  if weight <= 150:
-    if flag == 0:
-      print("\n\nСогласовывать полет не обязательно для: \n")
-      flag = 1
-    print(drone)
-
+  if (height > 150) or (settlement == 'yes' and weight > 150) or (closedArea == 'yes') or (vision == 'no'):
+    print(drone, " - cогласовывать полет обязательно\n")
+  else:
+    print(drone, " - cогласовывать полет не обязательно\n")
