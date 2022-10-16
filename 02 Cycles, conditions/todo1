@@ -1,36 +1,44 @@
-#TODO1
-#выведите все дроны производителя, название которого введет пользователь через input, и подсчитайте их количество. 
-#учтите, что:
-#1) DJI и Dji - это один и тот же производитель! такие случаи тоже должны обрабатываться
-#2) при выводе исправьте название производителя, если допущена ошибка. правильный вариант названия: DJI, Autel
+#TODO4
+#для каждого дрона из списка выведите, нужно ли согласовывать полет при следующих условиях:
+#высота 100 м, полет над населенным пунктом, вне закрытых зон, в прямой видимости
+#помните, что для дронов тяжелее 150 г согласовывать полет над населенным пунктом - обязательно!
 
 drone_list = ["DJI Mavic 2 Pro", "DJI Mavic 2 Zoom", "DJI Mavic 2 Enterprise Advanced", "AUTEL Evo II Pro", "DJI Mini 2", "Autel Evo Nano", "Autel Evo Lite Plus", "Parrot Anafi", "Dji Inspire 2", "DJI Mavic 3", "DJI Mavic Air2s", "Ryze Tello", "Eachine Trashcan"]
 
-arr = []
-for drone in drone_list:
-  if drone.split(' ')[0].lower() == 'dji':
-    arr.append(drone.replace(drone.split(' ')[0], 'DJI'))
-  elif drone.split(' ')[0].lower() == 'autel':
-    arr.append(drone.replace(drone.split(' ')[0], 'Autel'))
-  else: 
-    arr.append(drone)
-  
-for drone in arr:
-  print(drone)
-  
-  
-print("\nВведите производителя дронов:")
-droneDeveloper = input()
-print("\nПоиск по производителю", droneDeveloper, "........")
-#droneDeveloper = str.upper (droneDeveloper)
+drone_weight_list = [903, 900, 920, 980, 249, 249, 600, 540, 1500, 1000, 570, 130, 110]
+settlement = ''
+vision = ''
+closedArea = ''
+height = 0
 
-c = 0
-for drone in arr:
-    if str.upper (drone.split(' ')[0]) == str.upper(droneDeveloper):
-        c+=1
-        print(drone)
-        
-if c == 0:
-  print("\nНет данных по производителю")
-else:
-  print("\nНайдено дронов:", c)
+print("\nОтветьте yes или  no на следующие вопросы о месте полёта:\n")
+
+print("\nПолёт над населенным пунктом?\n")
+while settlement != 'yes' and settlement != 'no':
+  settlement = input()
+  if settlement != 'yes' and settlement != 'no':
+    print("Ввод не верен, повторите попытку")
+
+print("\nПолёт в прямой видимости?\n")
+while vision != 'yes' and vision != 'no':
+  vision = input()
+  if vision != 'yes' and vision != 'no':
+    print("Ввод не верен, повторите попытку")
+
+print("\nПолёт в закрытой зоне?\n")
+while closedArea != 'yes' and closedArea != 'no':
+  closedArea = input()
+  if closedArea != 'yes' and closedArea != 'no':
+    print("Ввод не верен, повторите попытку")
+    
+print("\nВведите высоту полета в метрах:")
+height = input()
+height = int(height)
+print("\n\n")
+
+flag = 0
+for drone, weight in zip(drone_list,  drone_weight_list):
+  if (height > 150) or (settlement == 'yes' and weight > 150) or (closedArea == 'yes') or (vision == 'no'):
+    print(drone, " - cогласовывать полет обязательно\n")
+  else:
+    print(drone, " - cогласовывать полет не обязательно\n")
