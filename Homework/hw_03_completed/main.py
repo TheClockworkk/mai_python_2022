@@ -210,12 +210,21 @@ if __name__ == "__main__":
   # код:
   
   for drone in drone_arr:
-    print(f"\n{drone.get_model()}: инцидентов - {len(drone.incidents)} \n")
-    if len(drone.incidents)!=0:
-      i=1
-      for incident in drone.incidents:
-        print(f"{i} - {incident}\n")
-        i+=1
+      print(f"\n{drone.get_model()}: инцидентов - {len(drone.incidents)}\n")
+      if len(drone.incidents)!=0:
+        i=1
+        for incident in drone.incidents:
+          drone_incidents = incident.split(".")
+          short_inc=""
+          print(f"\nИнцидент {i}:\n\n", end='')
+          for d_incident in drone_incidents:
+            if str(drone.get_model()).replace("DJI ","").upper() in str(d_incident):
+              short_inc=short_inc+d_incident+"."
+          print("Краткое описание:\n", short_inc)
+          print("\nПолное описание:\n", str(incident))
+          i+=1
+    
+   
   
   # TODO 4-2 - После вывода информации об инциденте сохраните всю информацию о дроне в файл .json при помощи метода save_data
   # код:
